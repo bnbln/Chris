@@ -78,9 +78,8 @@ class Images extends React.Component {
     return (
         this.props.photos ?
         <div>
-            <Grid container alignItems="center" justify="center" direction="row"
-            >
-                <Grid item xs={11}>
+            <Grid container alignItems="center" justify="center" direction="row">
+            <Grid item xs={11}>
                     <Grid container alignItems="center" justify="center" spacing={24} direction="row">
                     {this.props.photos.map((index, i) => 
                     <Grid item xs={12} sm={6} md={4} xl={3} key={i} style={{

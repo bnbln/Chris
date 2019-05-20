@@ -6,6 +6,7 @@ import sizeMe from 'react-sizeme';
 import ImageGrid from "./components/ImageGrid"
 import Images from "./components/Images"
 import MyModal from "./components/Modal"
+import Lottie from "./components/Lottie";
 
 
 
@@ -94,8 +95,8 @@ class Home extends Component {
     return (
       <div ref={this.divElement} style={{transition: "opacity 0.5s ease-in-out",
       opacity: this.state.isMounted === true && this.state.isLoaded === true ? 1 : 0}}>
-
-        <Grid container justify="center" spacing={8} style={{minHeight: "100vh"}}>
+        <Lottie scroll={this.state.scroll}  />
+        <Grid container justify="center" spacing={8} style={{ minHeight: "100vh", marginTop: 10}}>
           {photostring[0] ?
             photostring[0].src ?
               <Images {... this.props} photos={photostring} posts={this.state.posts} hasLoaded={this.state.hasLoaded}/>

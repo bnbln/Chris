@@ -25,7 +25,7 @@ class Footer extends Component {
   }
   render() {
     return (
-      <Grid container justify="center" style={{marginBottom: 20, marginTop: 20, zIndex: 1, position: "relative"}} className="footerMenu">
+      <Grid container justify="center" style={{marginBottom: 20, marginTop: 20, zIndex: 1, bottom:0, position: "relative"}} className="footerMenu">
         {this.state.menu.map((item, i) =>
           <Button size="small" key={i} component={Link} to={item.url.substr(0 , 26) === "https://chris.thesolu.com/" ?
            "/" + item.url.substr(26).slice(0,-1)

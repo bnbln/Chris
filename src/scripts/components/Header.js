@@ -4,13 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import {ReactTitle} from 'react-meta-tags';
 import sizeMe from 'react-sizeme';
-import Lottie from "./Lottie";
 import igSvg from "./../../assets/instagram.svg";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-
-
 import myjson from "../../assets/chris.json"
 
 
@@ -70,7 +66,7 @@ class Header extends Component {
       gtag('config', 'UA-126668979-4');
     }
     return (
-      <Grid container justify="center" alignItems="center" style={{marginBottom: 20 }}>
+      <Grid container justify="center" alignItems="center">
         <ReactTitle title={this.props.info ? this.props.info.name +" - "+this.props.info.description : null} />
         {this.state.cookiesLoaded === true && this.state.cookies === null ?
           <Grid item className="cookieBanner">
@@ -92,51 +88,71 @@ class Header extends Component {
 
 
         {/* <Scene /> */}
-        <AppBar position="fixed" color="default">
-          <Toolbar>
-            <Grid container justify="space-between">
-              <Grid item>
-                {this.state.menu.map((item, i) =>
-                  <Button key={i} component={Link}
-                    style={{
-                      margin: "5px",
-                      padding: "5px 15px"
-                    }}
-                    to={item.url.substr(0, 26) === "https://chris.thesolu.com/" ?
-                      "/" + item.url.substr(26).slice(0, -1)
-                      : item.url === "https://christophhalstenberg.com" ?
-                        "/"
-                        : item.url} onClick={() => {
-                          window.scrollTo({
-                            top: 400,
-                            behavior: 'smooth'
-                          });
-                        }}>
-                    {item.title}
-                  </Button>
-                )}
-              </Grid>
-              <Grid item>
-                <h2>christophhalstenberg</h2>
-              </Grid>
-              <Grid item>
-                {this.state.social.map((item, i) =>
-                  <a href={item.url} key={i}>
-                    {item.title === "Instagram" ?
-                      <Button >
-                        <img src={`/${igSvg}`} style={{ width: "15px" }}></img>
-                      </Button>
-                      :
-                      <Button >
-                        {item.title}
-                      </Button>}
-                  </a>
-                )}
+        <AppBar position="fixed" color="default" style={{
+          //transition: "all 0.1s ease-in-out",
+          backgroundColor: "rgba(255,255,255," + Math.min(1, this.props.scroll * 0.005) + ")",
+          boxShadow: "none"
+      }}>
+            <Grid container justify="center" alignItems="center">
+              <Grid item xs={11} >
+              <Grid container justify="space-between" alignItems="center">
+                <Grid item>
+                  {this.props.info ?
+                    <div style={{
+                      //display: "none"
+                    }}>
+                      <h1 style={{
+                        fontSize: "1.4em",
+                        margin: 0,
+                        fontWeight: 900
+                      }}>{this.props.info.name}</h1>
+                      {/* <h5 style={{ textAlign: "center" }}>{this.props.info.description}</h5> */}
+                    </div>
+                    : null}
+                </Grid>
+                <Grid item>
+                  <Grid container justify="flex-end" alignItems="center" direction="row">
+                    <Grid item>
+                      {this.state.menu.map((item, i) =>
+                        <Button key={i} component={Link}
+                          style={{
+                            margin: "5px",
+                            padding: "5px 15px"
+                          }}
+                          to={item.url.substr(0, 26) === "https://chris.thesolu.com/" ?
+                            "/" + item.url.substr(26).slice(0, -1)
+                            : item.url === "https://christophhalstenberg.com" ?
+                              "/"
+                              : item.url} onClick={() => {
+                                window.scrollTo({
+                                  top: 0,
+                                  behavior: 'smooth'
+                                });
+                              }}>
+                          {item.title}
+                        </Button>
+                      )}
+                    </Grid>
+                    <Grid item>
+                      {this.state.social.map((item, i) =>
+                        <a href={item.url} key={i}>
+                          {item.title === "Instagram" ?
+                            <Button >
+                              <img src={`/${igSvg}`} style={{ width: "15px" }}></img>
+                            </Button>
+                            :
+                            <Button >
+                              {item.title}
+                            </Button>}
+                        </a>
+                      )}
+                    </Grid>
+                  </Grid>
+                </Grid>
+                </Grid>
               </Grid>
             </Grid>
-          </Toolbar>
         </AppBar>
-        <Lottie />
       </Grid>
     );
   }

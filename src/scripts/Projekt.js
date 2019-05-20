@@ -99,7 +99,7 @@ class Projekt extends Component {
                       console.log("photostring", photostring)
 
     return (
-      <Grid container justify="center" style={{minHeight: "100vh"}}>
+      <Grid container justify="center" style={{minHeight: "100vh", marginTop: 64}}>
         {this.state.data[0] ?
             <Grid item xs={11}>
               <h1 dangerouslySetInnerHTML={{__html: data.title.rendered}}/>

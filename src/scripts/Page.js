@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import image from "../assets/img01.jpg"
 
 
 class Projekte extends Component {
@@ -41,13 +42,12 @@ class Projekte extends Component {
 
     return (
       <Grid container justify="center" style={{
-        minHeight: "100vh",
+        paddingTop: 64,
         opacity: this.state.isLoaded === true ? 1 : 0,
         transition: "opacity 0.3s ease-in-out"
       }}>
-
           {this.state.data.map((data,i) =>
-            <Grid item xs={11} md={7} key={i}>
+            <Grid item xs={11} key={i}>
           <div dangerouslySetInnerHTML={{__html: data.content.rendered}}></div>
           </Grid>
           )}
